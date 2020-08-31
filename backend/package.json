@@ -4,11 +4,24 @@
   "description": "Um projeto para consumir os endpoints da pokemonapi",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "pokemonapi"
   ],
   "author": "Felipe Bersani",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.20.0",
+    "celebrate": "^12.2.0",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.2",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "jest": "^26.4.2",
+    "nodemon": "^2.0.4",
+    "supertest": "^4.0.2"
+  }
 }
