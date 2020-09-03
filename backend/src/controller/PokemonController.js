@@ -1,12 +1,18 @@
-const { router } = require('./routes');
 const pokemonService = require('../service/pokemonService');
 
 module.exports = {
+    async favcon(req, res) {return res.status(204);},
 
-    async index(req, res, next) {
-        const response = await pokemonService.getPokemon();
-        console.log(response);
-        res.send(`Pokemon encontrato!!! ${response.data.name}!!!! ${response.data.sprites.front_default}`);
+    async getAll(req, res) {
+        const offset = req.query.offset;
+        const response = await pokemonService.getAllPokemons(offset);
+        return res.json(response);
+    },
+
+    async getById(req, res) {
+        const id = req.params.id;
+        const response = await pokemonService.getPokemonById(id);
+        return res.json(response);
     }
-
+    
 }
