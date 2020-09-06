@@ -6,7 +6,11 @@ const PokemonController = require('./controller/PokemonController');
 
 router.get('/favicon.ico', PokemonController.favcon); 
 
-router.get('/', PokemonController.getAll);
+router.get('/', celebrate({
+    [Segments.QUERY]: Joi.object().keys({
+        startId: Joi.number().min(1),
+    })
+}), PokemonController.getAll);
 
 router.get('/:id', celebrate({
     [Segments.PARAMS]: Joi.object().keys({

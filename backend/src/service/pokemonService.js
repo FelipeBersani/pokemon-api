@@ -16,25 +16,28 @@ module.exports = {
     }
   },
 
-  async getAllPokemons(offset) {
-    const pokemons = await axios.get(pokeApiUrl.SEARCH_POKEMONS_PAGINATED+offset);
+  async getAllPokemons(startId = 0) {
+    const pokemons = await axios.get(pokeApiUrl.SEARCH_POKEMONS_PAGINATED+startId);
     if (pokemons.length < 1) return null;
 
-    const responseArray = this.findPokemons(pokemons.data.results);
-    
+    const responseArray = await this.findPokemons(pokemons.data.results);
+    console.log(responseArray[0]);
     return responseArray;
   },
 
   async findPokemons(urls, responseArray=[]){
+    let pokemon = {};
+
     await axios.all(urls.map(u => axios.get(u.url)))
     .then(axios.spread((...responses) => {
       responses.forEach(async res => {
-        const pokemon = await mapper.pokemonCard(res.data);
+        pokemon = await mapper.pokemonCard(res.data);
         responseArray.push(pokemon);
       });
     })).catch(errors => {
       console.log(errors)
     })
+    responseArray["next"] = responseArray[responseArray.length-1].id;
     console.log(`${responseArray.length} pokemons found successfully`);
     return responseArray;
   }

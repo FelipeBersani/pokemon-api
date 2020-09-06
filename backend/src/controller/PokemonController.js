@@ -4,8 +4,8 @@ module.exports = {
     async favcon(req, res) {return res.status(204);},
 
     async getAll(req, res) {
-        const offset = req.query.offset;
-        const response = await pokemonService.getAllPokemons(offset);
+        const startId = req.query.startId;
+        const response = await pokemonService.getAllPokemons(startId);
         return res.json(response);
     },
 

@@ -14,7 +14,7 @@ module.exports = {
         speed: pokemon.stats[5].base_stat,
       },
       moves: pokemon.moves.map(move => move.move.name),
-      types: pokemon.types.map(type => type.type.name).join('/'),
+      types: pokemon.types.map(type => type.type.name),
       sprite: pokemon.sprites.front_default,
     }
   },
@@ -23,7 +23,7 @@ module.exports = {
     return {
       id: pokemon.id,
       name: pokemon.name,
-      types: pokemon.types.map(type => type.type.name).join('/'),
+      types: pokemon.types.map(type => type.type.name),
       sprite: pokemon.sprites.front_default,
     }
   }
