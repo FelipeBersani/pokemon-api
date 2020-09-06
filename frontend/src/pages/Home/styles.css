@@ -1,0 +1,140 @@
+.container nav{
+  background-color: #ef5350;
+  width: 100%;
+  height: 70px;
+}
+
+.container .pageLogo{
+  padding: 15px 0 15px 60px;
+  height: 100%;
+}
+
+.container nav ul {
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  height: 100%;
+  align-items: center;
+  float: right;
+  margin-right: 10%;
+}
+
+.container nav ul li {
+  font-size: 15px;
+  padding: 26px 26px;
+  color:black;
+  font-weight: 500;
+}
+
+.container nav ul li:hover{
+  box-sizing: content-box;
+  background-color: #c52320;
+  border-bottom: 1px solid black;
+  border-bottom-width: thin;
+  transition: .5s;
+  cursor: pointer;
+}
+
+.container .grid-details{
+  display: grid;
+  grid-auto-columns: 100px;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+  height: 100%;
+  width: 50%;
+  min-width: 100px;
+  margin: 4% auto;
+}
+
+.container .grid-details .card{
+  height: 300px;
+  width: 200px;
+  position: relative;
+  border: 4px solid green;
+  transform-style: preserve-3d;
+}
+
+.container .grid-details .card .face{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transition: 1.2s ease-in-out;
+  transform: perspective(200px) rotateY(0deg);
+}
+
+.container .grid-details .card .face.front{
+  width: 100%;
+  height: 100%;
+}
+
+.container .grid-details .card:hover .face.front{
+  transform: perspective(200px) rotateY(180deg);
+}
+
+.container .grid-details .card .front img{
+  height: 100%;
+  width: 100%;
+  border-radius: 15px;
+}
+
+.container .grid-details .card .face.back{
+  display: flex;
+  flex-direction: column;
+  transform: perspective(200px) rotateY(180deg);
+}
+
+.container .grid-details .card:hover .face.back{
+  transform: perspective(200px) rotateY(360deg);
+}
+
+.container .grid-details .card .card-header{
+  height: 70%;
+  width: 100%;
+  border-bottom: 3px solid blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.container .grid-details .card .card-header img{
+  width: 150px;
+  height: 150px;
+}
+
+.container .grid-details .card .card-body{
+  height: 30%;
+  width: 100%;
+  display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.container .grid-details .card .card-body .type{
+  border-radius: 10px;
+  display: flex;
+  border: 3px solid blueviolet;
+  width: 50%;
+  height: 35%;
+  margin-top: 0%;
+  justify-content: center;
+  align-items: center;
+}
+
+.container .grid-details .card .card-body .back-link{
+  color:black;
+  display: flex;
+  width: 100%;
+  height: 50%;
+  justify-content: center;
+  align-items: center;
+}
+
+button{
+  height: 100px;
+  width: 100px;
+}
