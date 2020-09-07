@@ -17,11 +17,16 @@ module.exports = {
   },
 
   async getAllPokemons(startId = 0) {
-    const pokemons = await axios.get(pokeApiUrl.SEARCH_POKEMONS_PAGINATED+startId);
+    let pokemons = {};
+    if(startId===10157){
+    }else if(startId>1000){
+      pokemons = await axios.get(pokeApiUrl.SEARCH_POKEMONS_PAGINATED_AFTER_HUNDRED);
+    }else{
+      pokemons = await axios.get(pokeApiUrl.SEARCH_POKEMONS_PAGINATED+startId);
+    }
     if (pokemons.length < 1) return null;
 
     const responseArray = await this.findPokemons(pokemons.data.results);
-    console.log(responseArray[0]);
     return responseArray;
   },
 
@@ -37,8 +42,12 @@ module.exports = {
     })).catch(errors => {
       console.log(errors)
     })
-    responseArray["next"] = responseArray[responseArray.length-1].id;
-    console.log(`${responseArray.length} pokemons found successfully`);
+    responseArray = {
+      pokemons: responseArray,
+      lastKey: responseArray[responseArray.length-1].id
+    }
+      
+    console.log(`${responseArray.pokemons.length} pokemons found successfully`);
     return responseArray;
   }
 }
