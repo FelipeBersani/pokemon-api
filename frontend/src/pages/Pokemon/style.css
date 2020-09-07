@@ -1,0 +1,149 @@
+.container{
+  width: 100%;
+  height: 100%;
+  min-width: 450px;
+  margin-top: 70px;
+  padding-top: 20px;
+}
+
+.container nav{
+  position: fixed;
+  z-index: 998;
+  top: 0;
+  background-color: #ef5350;
+  width: 100%;
+  height: 70px;
+}
+
+.container .pageLogo{
+  padding: 15px 0 15px 60px;
+  height: 100%;
+}
+
+.container nav ul {
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  height: 100%;
+  align-items: center;
+  float: right;
+  margin-right: 10%;
+}
+
+.container nav ul li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  color:black;
+  font-weight: 500;
+  height: 100%;
+  min-width: 70px;
+}
+
+.container nav ul li:hover{
+  box-sizing: content-box;
+  background-color: #c52320;
+  transition: .8s;
+  cursor: pointer;  
+}
+
+.content{
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  height: 100%;
+  margin: auto;
+}
+
+.before-after{
+  width: 100%;
+}
+
+.before-after .before{
+  float: left;
+}
+
+.before-after .after{
+  float: right;
+}
+
+.pokemon-content{
+  border: 3px solid red;
+  width: 50%;
+  height: 300px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  min-width: 500px;
+}
+
+.img-stats{
+  width: 50%;
+}
+
+.img-stats img{
+  height: 70%;
+  min-width: 200px;
+}
+
+.weight-height{
+  width: 100%;
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0px 15px;
+}
+
+.weight-height h2{
+  padding-top: 5px;
+}
+
+.base-stats{
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border: 2px solid blue;
+  min-width: 300px;
+}
+
+.base-stats > h1{
+  line-height: 50px;
+  background-color: pink
+}
+
+.types{
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  width: 101%;
+  height: 100%;
+  border: 3px solid green;
+}
+
+.types h1{
+  width: 50%;
+}
+
+.stats{
+  width: 100%;
+    height: 100%;
+    text-align: left;
+}
+
+.moves{
+  min-width: 500px;
+  margin: 20px auto;
+}
+
+.moves > h1{
+  border-bottom: 4px solid gray;
+    padding-left: 25px;
+}
+
+.move{
+  display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}

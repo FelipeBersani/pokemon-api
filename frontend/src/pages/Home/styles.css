@@ -1,4 +1,15 @@
+.container{
+  width: 100%;
+  height: 100%;
+  min-width: 450px;
+  margin-top: 70px;
+  padding-top: 20px;
+}
+
 .container nav{
+  position: fixed;
+  z-index: 998;
+  top: 0;
   background-color: #ef5350;
   width: 100%;
   height: 70px;
@@ -20,37 +31,74 @@
 }
 
 .container nav ul li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 15px;
-  padding: 26px 26px;
   color:black;
   font-weight: 500;
+  height: 100%;
+  min-width: 70px;
 }
 
 .container nav ul li:hover{
   box-sizing: content-box;
   background-color: #c52320;
-  border-bottom: 1px solid black;
-  border-bottom-width: thin;
-  transition: .5s;
-  cursor: pointer;
+  transition: .8s;
+  cursor: pointer;  
+}
+
+.container-sidebar{
+  position: absolute;
+  z-index: 999;
+  right: 0;
+  width: 80%;
+  max-width: 350px;
+  height: 100%;
+  background-color: rgb(254, 202, 27);
+  padding-left: 20px;
+  transition: right .8s ease-in-out;
+}
+
+.container-sidebar li{
+  padding-top: 20px;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.is-inactive{
+  right: -100% !important;
+}
+
+.sidebar{
+  width: 100%;
+  height: 100%;
+  top: 70px;
+  position: fixed;
+  z-index: 998;
+}
+
+.background-sidebar{
+  background-color: rgba(0,0,0,0.4);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 997;
 }
 
 .container .grid-details{
   display: grid;
-  grid-auto-columns: 100px;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 10px;
-  height: 100%;
-  width: 50%;
-  min-width: 100px;
-  margin: 4% auto;
+  width: 100%;
+  grid-gap: 1rem;
+  margin: 2rem auto;
 }
 
 .container .grid-details .card{
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 300px;
-  width: 200px;
-  position: relative;
-  border: 4px solid green;
+  width: 100%;
   transform-style: preserve-3d;
 }
 
@@ -58,21 +106,20 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
   height: 100%;
+  width: 100%;
   transform-style: preserve-3d;
   backface-visibility: hidden;
-  transition: 1.2s ease-in-out;
+  transition: 1s ease-in-out;
   transform: perspective(200px) rotateY(0deg);
 }
 
 .container .grid-details .card .face.front{
-  width: 100%;
-  height: 100%;
+  transform: perspective(200px) rotateY(-180deg);
 }
 
 .container .grid-details .card:hover .face.front{
-  transform: perspective(200px) rotateY(180deg);
+  transform: perspective(200px) rotateY(-540deg);
 }
 
 .container .grid-details .card .front img{
@@ -84,57 +131,182 @@
 .container .grid-details .card .face.back{
   display: flex;
   flex-direction: column;
-  transform: perspective(200px) rotateY(180deg);
+  border: 2px solid black;
+  border-radius: 15px;
+  background-color: white;
+  padding: 8px;
 }
 
 .container .grid-details .card:hover .face.back{
-  transform: perspective(200px) rotateY(360deg);
+  transform: perspective(200px) rotateY(-360deg);
 }
 
 .container .grid-details .card .card-header{
-  height: 70%;
+  height: 60%;
   width: 100%;
-  border-bottom: 3px solid blue;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
 }
 
 .container .grid-details .card .card-header img{
-  width: 150px;
-  height: 150px;
+  width: auto;
+  height: 125px;
+  display: block;
+  margin: auto;
+}
+
+.card-header h1{
+  font-size: 22px;
+  text-transform: capitalize;
+  text-align: center;
 }
 
 .container .grid-details .card .card-body{
-  height: 30%;
+  height: 40%;
   width: 100%;
   display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .container .grid-details .card .card-body .type{
-  border-radius: 10px;
   display: flex;
-  border: 3px solid blueviolet;
-  width: 50%;
+  font-weight: 500;
+  font-style: italic;
+  width: 41%;
   height: 35%;
-  margin-top: 0%;
+  margin: 0 auto;
   justify-content: center;
+  padding: 0px 5px;
   align-items: center;
 }
 
 .container .grid-details .card .card-body .back-link{
-  color:black;
-  display: flex;
-  width: 100%;
-  height: 50%;
-  justify-content: center;
+  padding: 0px 20px;
   align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
 }
 
-button{
-  height: 100px;
-  width: 100px;
+.pokemons-type{
+  display: flex;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.pokemon-type{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+@media(max-width: 450px){
+  .menu-item {
+    display: none !important;
+  }
+}
+
+@media(min-width: 450px){
+  .menu, .sidebar{
+    display: none !important;
+  }
+}
+
+@media(min-width: 300px){
+  .grid-details { 
+    grid-template-columns: repeat(1, 1fr);
+    max-width: 200px;
+  }
+} 
+
+@media(min-width: 600px){
+  .grid-details { 
+    grid-template-columns: repeat(2, 1fr); 
+    max-width: 450px;
+  }
+} 
+@media(min-width: 900px){
+  .grid-details { 
+    grid-template-columns: repeat(3, 1fr); 
+    max-width: 700px;
+  }
+} 
+
+.background-grass{
+  background-color: #b5f9a4 !important;
+}
+
+.background-fire{
+  background-color: #ffc59e !important;
+}
+
+.background-water{
+  background-color: #7aa4ff !important;
+}
+
+.background-normal{
+  background-color: #cfcfcf !important;
+}
+
+.background-fighting{
+  background-color: #dc8989 !important;
+}
+
+.background-flying{
+  background-color: #9ee8ff !important;
+}
+
+.background-poison{
+  background-color: #c0a3e6 !important;
+}
+
+.background-ground{
+  background-color: #e0be8f !important;
+}
+
+.background-rock{
+  background-color: #dacb77 !important;
+}
+
+.background-bug{
+  background-color: #cad65c !important;
+}
+
+.background-ghost{
+  background-color: #ae94f0 !important;
+}
+
+.background-steel{
+  background-color: #809dc9 !important;
+}
+
+.background-electric{
+  background-color: #ecd16f !important;
+}
+
+.background-psychic{
+  background-color: #ff84bd !important;
+}
+
+.background-ice{
+  background-color: #bdf9fe !important;
+}
+
+.background-dragon{
+  background-color: #6d68fd !important;
+}
+
+.background-dark{
+  background-color: #aeaeb7 !important;
+}
+
+.background-fairy{
+  background-color: #fd97e5 !important;
+}
+
+.background-unknown{
+  background-color: moccasin !important;
 }
