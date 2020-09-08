@@ -1,6 +1,5 @@
 module.exports = {
   async fullPokemon(pokemon) {
-    console.log(pokemon.stats)
     return {
       id: pokemon.id,
       name: pokemon.name,
