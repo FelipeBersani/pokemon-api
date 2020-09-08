@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import debounce from 'lodash.debounce';
 
 import api from '../../services/api';
 import cardcover from '../../assets/card-cover.png';
-import pokemonNotFound from '../../assets/no-pokemon2.png';
+import pokemonNotFound from '../../assets/no-pokemon.png';
+import '../../global.css';
 import './styles.css';
 
 const pokemonLogo = require('../../assets/pokeapi_256.png');
@@ -18,6 +19,7 @@ export default function Home() {
 
   useEffect(() => {
     handleAllPokemons(0);
+    localStorage.setItem('idPokemon', 150);
   }, []);
 
   window.onscroll = debounce(() => {
@@ -50,21 +52,21 @@ export default function Home() {
   }
 
   return (
-    <div className="container">
+      <div className="container">
       <nav>
-        <img className="pageLogo" src={pokemonLogo} alt="Pokemon Logo" />
+        <Link to="/"><img className="pageLogo" src={pokemonLogo} alt="Pokemon Logo"></img></Link>
         <ul>
-          <li className="menu-item">Home</li>
-          <li className="menu-item">Details</li>
+          <li className="menu-item"><Link to="/">Home</Link></li>
+          <li className="menu-item"><Link to={`/pokemon/1`}>Details</Link></li>
           <li onClick={changeMenuStatus} className="menu"><img src={menu} alt="Mobile menu" /></li>
         </ul>
       </nav>
-      <div className="sidebar">
+      <div className={`sidebar ${!menuOpen ? 'is-open' : ''}`}>
         {menuOpen ? <div className="background-sidebar" /> : null}
         <div className={`container-sidebar ${!menuOpen ? 'is-inactive' : ''}`}>
           <ul>
-            <li>Home</li>
-            <li>Details</li>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to={`/pokemon/1`}>Details</Link></li>
           </ul>
         </div>
       </div>
@@ -79,16 +81,17 @@ export default function Home() {
               </div>
 
               <div className="card-body">
-                <div className="pokemons-type">
+                <div className="home-pokemons-type">
                   {pokemon.types.map(type => (
-                    <div key={pokemon.id+type} className="pokemon-type">
-                      <img src={require(`../../assets/type-${type}.png`)} alt="Pokemon type" />
-                      <div key={type} className='type'>{type}</div>
+                    <div key={pokemon.id+type} className="types">
+                      <div className="home-pokemon-type">
+                        <img src={require(`../../assets/type-${type}.png`)} alt="Pokemon type" />
+                        <div key={type} className='type'>{type}</div>
+                      </div>
                     </div>
                   ))}
                 </div>
                 <button className="back-link" onClick={() => {
-                  localStorage.setItem('idPokemon', pokemon.id);
                   history.push('/pokemon/' + pokemon.id)
                 }}>
                   Get more details
