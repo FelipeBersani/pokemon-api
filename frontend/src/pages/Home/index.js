@@ -24,7 +24,7 @@ export default function Home() {
 
   window.onscroll = debounce(() => {
 
-    if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
       handleAllPokemons(lastKey);
     }
   }, 10);
